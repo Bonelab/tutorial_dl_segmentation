@@ -50,20 +50,6 @@ def main(args: Namespace):
 
     dataset.pickle_dataset(args.output_dir, list(range(100)), 1)
 
-    '''
-    for i, data in tqdm(enumerate(file_loader)):
-        data = rescaler(data)
-        subdir = os.path.join(args.output_dir, f"{i}")
-        if not os.path.exists(subdir):
-            os.mkdir(subdir)
-        img = zoom(data[0][0, :, :, slice_idx], zoom=1/2, order=3)
-        masks = zoom(np.argmax(data[1][:, :, :, slice_idx], axis=0), zoom=1/2, order=0)
-        sample = img, masks
-        sample_fn = os.path.join(subdir, f"epoch_0.pickle")
-        with open(sample_fn, "wb") as f:
-            pickle.dump(sample, f, protocol=pickle.HIGHEST_PROTOCOL)
-    '''
-
 
 if __name__ == "__main__":
     main(create_parser().parse_args())
